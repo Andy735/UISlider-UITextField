@@ -9,35 +9,39 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var IView: UIImageView!
-    @IBOutlet weak var RSlider: UISlider!
-    @IBOutlet weak var GSlider: UISlider!
-    @IBOutlet weak var BSlider: UISlider!
+    @IBOutlet weak var colorPreviewImageView: UIImageView!
+    @IBOutlet weak var redSlider: UISlider!
+    @IBOutlet weak var greenSlider: UISlider!
+    @IBOutlet weak var blueSlider: UISlider!
     
-    @IBOutlet weak var RText: UILabel!
-    @IBOutlet weak var GText: UILabel!
-    @IBOutlet weak var BText: UILabel!
+    @IBOutlet weak var redLabel: UILabel!
+    @IBOutlet weak var greenLabel: UILabel!
+    @IBOutlet weak var blueLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Slider放開才刷新
-        RSlider.isContinuous = false
-        GSlider.isContinuous = false
-        BSlider.isContinuous = false
+        // Sliders 只有放開才刷新
+        redSlider.isContinuous = false
+        greenSlider.isContinuous = false
+        blueSlider.isContinuous = false
     }
     
-    @IBAction func SliderAction(_ sender: Any) {
+    @IBAction func sliderAction(_ sender: Any) {
         
-        IView.backgroundColor = UIColor(
-            red: CGFloat((RSlider.value)/255),
-            green: CGFloat((GSlider.value)/255),
-            blue: CGFloat((BSlider.value)/255),
+        let redValue = CGFloat(redSlider.value) / 255.0
+        let greenValue = CGFloat(greenSlider.value) / 255.0
+        let blueValue = CGFloat(blueSlider.value) / 255.0
+        
+        colorPreviewImageView.backgroundColor = UIColor(
+            red: redValue,
+            green: greenValue,
+            blue: blueValue,
             alpha: 1)
         
-        RText.text = Int(RSlider.value).description
-        GText.text = Int(GSlider.value).description
-        BText.text = Int(BSlider.value).description
+        redLabel.text = Int(redSlider.value).description
+        greenLabel.text = Int(greenSlider.value).description
+        blueLabel.text = Int(blueSlider.value).description
     }
 }
 
